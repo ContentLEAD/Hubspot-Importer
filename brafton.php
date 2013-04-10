@@ -50,6 +50,7 @@ Class brafton {
 		$articles = $fh->getNewsHTML();
 
 		foreach ($articles as $a) {
+			$strPost = '';
 			$createCat = array();
 			$brafton_id = $a->getId();		
 			$post_title = $a->getHeadline();
@@ -95,8 +96,10 @@ Class brafton {
 
 			echo $strPost."<br>";
 
+			$tags = array();
+			$count = 0;
 			foreach($createCat as $cat){
-				$tags[$count] = $cat;
+				$tags[$count] = htmlspecialchars($cat);
 				$count++;
 			}
 
@@ -147,6 +150,7 @@ Class brafton {
 		$articles = $articleClient->ListForFeed($feedList->items[0]->id,'live',0,100);
 
 		foreach ($articles->items as $article) {
+			$strPost = '';
 			$thisArticle = $client->Articles()->Get($article->id);
 			$throttle=1;
 			$post_title = $thisArticle->fields['title'];
@@ -197,9 +201,9 @@ Class brafton {
 
 			echo $strPost."<br>";
 
-			$tags[0] = $category->name;
+			$tags[0] = htmlspecialchars($category->name);
 
-			$gui = $this->BraftonCreatePost($strPost, blog_id, $author, 'blog@firstam.com', $post_title, $post_excerpt, $tags, $blogs);	
+			$gui = $this->BraftonCreatePost($strPost, blog_id, $author, email, $post_title, $post_excerpt, $tags, $blogs);	
 
 		}
 	}
