@@ -372,7 +372,6 @@ class HubSpot_Blog extends HubSpot_BaseClient {
         
         $body = '<?xml version="1.0" encoding="utf-8"?>
         <entry xmlns="http://www.w3.org/2005/Atom" xmlns:hs="http://www.hubspot.com/">
-            <published>'. $publish_time .'</published>
             <hs:draft>false</hs:draft>
             <hs:sendNotifications>'. $should_notify .'</hs:sendNotifications>
         </entry>';

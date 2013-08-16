@@ -103,8 +103,8 @@ Class brafton {
 				$count++;
 			}
 
-			//$gui = $this->BraftonCreatePost($strPost, blog_id, $author, email, $post_title, $post_excerpt, $tags, $blogs);	
-
+			$gui = $this->BraftonCreatePost($strPost, blog_id, $author, email, $post_title, $post_excerpt, $tags, $blogs);
+			$this->BraftonPublishPost($gui, blog_id,$blogs);
 		}
 
 	}
@@ -217,10 +217,15 @@ Class brafton {
 		$beg = strpos($createPost, "<id>",88);
 		$end = strpos($createPost, "</id>",$beg);
 		$mid = substr($createPost, $beg+4, ($end - $beg-4));
-		echo "<br/>".$mid."<br/>";
-		echo $createPost;
+		echo "beg: ".$beg."<br/>";
+		echo "mid: ".$mid."<br/>";
+		echo "end: ".$end."<br/>";
+		//echo "createpost starts: ".$createPost." createpost ends<br/>";
+		return $mid;
+		}
 
       //Publish a blog post
+	function BraftonPublishPost($postguid, $blogguid,$blogs){
 		date_default_timezone_set('America/New_York');
 		$future = date('G');
 		if ($future < 23) {
@@ -231,9 +236,10 @@ Class brafton {
 		$days = date('Y-m-d');
 		$times = date('i:s');
 		$publish_time = $days.'T'.$future.':'.$times.'Z';
-
-		//echo $blogs->publish_post($mid, $publish_time, 'false');
-		return $mid;
+		echo "before publishpost<br/>";
+		echo $blogs->publish_post($postguid, $publish_time, 'true');
+		echo "after publishpost<br/>";
+		//return $mid;
 
 	}
 
