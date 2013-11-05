@@ -70,23 +70,25 @@ Class brafton {
 				// Enter Author Tag
 			$author = author;
 
-			$photos = $a->getPhotos();                        
-			$image = $photos[0]->getLarge();
-			$post_image = $image->getUrl();
-			
-			$image_id = $photos[0]->getId();				
-
-			$image_small = $photos[0]->getThumb();
-			
-			$post_image_small = $image_small->getURL();
-
 			foreach ($CatColl as $category){
 				$createCat[] = $category->getName();
 			}
 
 			var_dump($createCat);
-
+			
 			if(!empty($post_image)){
+				$photos = $a->getPhotos();  
+			
+				$image = $photos[0]->getLarge();
+				
+				$post_image = $image->getUrl();
+				
+				$image_id = $photos[0]->getId();				
+
+				$image_small = $photos[0]->getThumb();
+				
+				$post_image_small = $image_small->getURL();
+
 				$strPost = $strPost.'<img src = "'.$post_image.'" alt ="" /><p>'.$post_content.'</p>' ;
 			} else {
 				$strPost= $strPost . $post_content;
