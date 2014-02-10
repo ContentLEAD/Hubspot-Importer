@@ -20,6 +20,7 @@
     define("hub_apiKey","");
     define("blog_id","");
     define("author","");
+    define("portal","");
 	
 	$player = "under construction"; 
 	

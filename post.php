@@ -86,7 +86,7 @@ class brafton_post{
 
     public function publish_post($article_id,$publish_date = false){
 
-        $url =  "https://api.hubapi.com/content/api/v2/blog-posts/$article_id/publish-action?portalId=291760&hapikey=" . hub_apiKey;
+        $url =  "https://api.hubapi.com/content/api/v2/blog-posts/$article_id/publish-action?portalId=" . portal  . "&hapikey=" . hub_apiKey;
         
         //echo $url;
 
