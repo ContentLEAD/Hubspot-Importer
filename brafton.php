@@ -22,6 +22,7 @@ define("hub_apiKey","xxx");
 define("blog_id","xxx");
 define("email","xxx");
 define("author","xxx");
+define("api_domain","http://api.brafton.com/")
 
 Class brafton {
 
@@ -46,7 +47,7 @@ Class brafton {
 
 		$posts = $blogs->get_posts($params, blog_id, $content_type);
 
-		$fh = new ApiHandler(brafton_apiKey, 'http://api.brafton.com/');
+		$fh = new ApiHandler(brafton_apiKey, api_domain);
 		$articles = $fh->getNewsHTML();
 
 		foreach ($articles as $a) {
@@ -76,12 +77,14 @@ Class brafton {
 
 			var_dump($createCat);
 			
-			if(!empty($post_image)){
+
 				$photos = $a->getPhotos();  
 			
 				$image = $photos[0]->getLarge();
 				
 				$post_image = $image->getUrl();
+
+				if(!empty($post_image)){
 				
 				$image_id = $photos[0]->getId();				
 
