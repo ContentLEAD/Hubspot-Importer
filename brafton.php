@@ -19,7 +19,7 @@
     define("brafton_apiKey", "");
     define("hub_apiKey","");
     define("blog_id","");
-    define("author","");
+    define("author_id",""); //uncomment out //list_authors to view available authors
     define("portal","");
 	
 	$player = "under construction"; 
