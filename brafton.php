@@ -16,11 +16,11 @@
 
     define("brafton_video_publicKey", "");
     define("brafton_video_secretKey", "");
-    define("brafton_apiKey", "");
-    define("hub_apiKey","");
-    define("blog_id","");
-    define("author_id",""); //uncomment out //list_authors to view available authors
-    define("portal","");
+    define("brafton_apiKey", "6553bbc2-03f7-4b53-925c-f441cc345b4d");
+    define("hub_apiKey","c8f5c8c8-0f05-48c9-96b1-5def47b431a0");
+    define("blog_id","523305256");
+    define("author_id","512540234J");
+    define("portal","112253");
 	
 	$player = "under construction"; 
 	
@@ -69,7 +69,7 @@
         
     function import_articles($titles,$existing_topics){
 
-        $fh = new ApiHandler(brafton_apiKey, 'http://api.brafton.com/');
+        $fh = new ApiHandler(brafton_apiKey, 'http://api.castleford.com.au/');
         $articles = $fh->getNewsHTML();
         $articles_imported = 0;
 
@@ -112,7 +112,7 @@
             $meta = $a->getHtmlMetaDescription();
             
                 // Enter Author Tag
-            $author = author;
+            $author = author_id;
 
             foreach ($CatColl as $category){
                 if(!$category) break;
@@ -147,6 +147,7 @@
 					$article_topics[] = $response->id;
 				}
 			}
+                
             
                 $photos = $a->getPhotos();  
             
@@ -171,8 +172,9 @@
                 } else {
                     $strPost= $strPost . $post_content;
                 }
-
-                echo $post_excerpt . '<br/>';
+              
+            
+                //echo $post_excerpt . '<br/>';
 
                 //echo $post_image;
 
@@ -201,13 +203,13 @@
 
         $params = array('max'=>99);
 
-        $baseURL = 'http://api.video.brafton.com/v2/';
+        $baseURL = 'http://api.video.castleford.com/v2/';
         $videoClient = new AdferoVideoClient($baseURL, brafton_video_publicKey, brafton_video_secretKey);
         $client = new AdferoClient($baseURL, brafton_video_publicKey, brafton_video_secretKey);
         $videoOutClient = $videoClient->videoOutputs();
 
         $photos = $client->ArticlePhotos();
-        $photoURI = "http://pictures.video.brafton.com/v2/";
+        $photoURI = "http://pictures.video.castleford.com/v2/";
         $photoClient = new AdferoPhotoClient($photoURI);
         $scale_axis = 500;
         $scale = 500;
@@ -261,7 +263,7 @@
             //$meta = $a->getHtmlMetaDescription();
             
             // Enter Author Tag
-            $author = author;
+            $author = author_id;
 			
 			$categories = $client->Categories();
 			if(isset($categories->ListForArticle($a->id,0,100)->items[0]->id)){
