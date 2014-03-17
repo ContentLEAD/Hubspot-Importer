@@ -21,6 +21,8 @@
     define("blog_id","");
     define("author_id","");
     define("portal","");
+    
+    define("domain", '');
 	
 	$player = "under construction"; 
 	
@@ -69,7 +71,7 @@
         
     function import_articles($titles,$existing_topics){
 
-        $fh = new ApiHandler(brafton_apiKey, 'http://api.castleford.com.au/');
+        $fh = new ApiHandler(brafton_apiKey, domain );
         $articles = $fh->getNewsHTML();
         $articles_imported = 0;
 
