@@ -36,7 +36,7 @@ class brafton_post{
         $this->article_id = $article_json->id;
 
         $updated_article = array(
-            'blog_author_id'=>author,
+            'blog_author_id'=>author_id,
             'meta_description'=>$this->meta_description,
             'slug'=>$this->slug,
             'post_body'=>$this->body,
