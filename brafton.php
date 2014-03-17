@@ -22,7 +22,7 @@
     define("author_id","");
     define("portal","");
     
-    define("domain", '');
+    define("domain", ''); //ex http://api.brafton.com/
 	
 	$player = "under construction"; 
 	
