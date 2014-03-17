@@ -16,11 +16,11 @@
 
     define("brafton_video_publicKey", "");
     define("brafton_video_secretKey", "");
-    define("brafton_apiKey", "6553bbc2-03f7-4b53-925c-f441cc345b4d");
-    define("hub_apiKey","c8f5c8c8-0f05-48c9-96b1-5def47b431a0");
-    define("blog_id","523305256");
-    define("author_id","512540234J");
-    define("portal","112253");
+    define("brafton_apiKey", "");
+    define("hub_apiKey","");
+    define("blog_id","");
+    define("author_id","");
+    define("portal","");
 	
 	$player = "under construction"; 
 	
