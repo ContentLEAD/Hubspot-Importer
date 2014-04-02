@@ -22,7 +22,7 @@ define("hub_apiKey","xxx");
 define("blog_id","xxx");
 define("email","xxx");
 define("author","xxx");
-define("api_domain","http://api.brafton.com/")
+define("api_domain","http://api.brafton.com/");
 
 Class brafton {
 
