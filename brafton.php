@@ -136,12 +136,12 @@ Class brafton {
 
 		$posts = $blogs->get_posts($params, blog_id, $content_type);
 
-		$baseURL = 'http://api.video.brafton.com/v2/';
+		$baseURL = 'http://livevideo.api.brafton.com/v2/';
 		$videoClient = new AdferoVideoClient($baseURL, brafton_video_publicKey, brafton_video_secretKey);
 		$client = new AdferoClient($baseURL, brafton_video_publicKey, brafton_video_secretKey);
 
 		$photos = $client->ArticlePhotos();
-		$photoURI = "http://pictures.directnews.co.uk/v2/";
+		$photoURI = "http://pictures.brafton.com/v2/";
 		$photoClient = new AdferoPhotoClient($photoURI);
 		$scale_axis = 500;
 		$scale = 500;
