@@ -131,12 +131,12 @@
                 foreach ($existing_topics as $topic) { 
 				//echo "topic second loop: $topic <br/>";
                     if($brafton_cat == $topic){
-						//echo "topic exists <br/>";
-						//echo "brafton cat: ". $brafton_cat . '<br/>';  
+			//echo "topic exists <br/>";
+			//echo "brafton cat: ". $brafton_cat . '<br/>';  
                         //echo "topic: $topic <br/>";
-						$article_topics[]=key($existing_topics);
+			$article_topics[] = array_search( $topic, $existing_topics);
                         $topic_exists = true;
-						break;
+			break;
                     }
 
                 }
@@ -284,12 +284,12 @@
                 foreach ($existing_topics as $topic) { 
 				echo "topic second loop: $topic <br/>";
                     if($brafton_cat == $topic){
-						echo "topic exists <br/>";
-						echo "brafton cat: ". $brafton_cat . '<br/>';  
+			echo "topic exists <br/>";
+			echo "brafton cat: ". $brafton_cat . '<br/>';  
                         echo "topic: $topic <br/>";
-						$article_topics[]=key($existing_topics);
+			$article_topics[] = array_search( $topic, $existing_topics);
                         $topic_exists = true;
-						break;
+			break;
                     }
 
                 }
