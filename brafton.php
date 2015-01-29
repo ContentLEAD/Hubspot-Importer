@@ -501,7 +501,9 @@ EOT;
 
         foreach ($topicsInfo->objects as $topic){
             //echo $topic->name . ':  ' . $topic->id . '<br/>';
-            $topic_array[$topic->id]=$topic->name;
+            //Convert ID to string to avoid max int issue with large topic IDs
+            $topic_id_str = strval($topic->id);
+            $topic_array[$topic_id_str]=$topic->name;
         }
         return $topic_array;
     }
