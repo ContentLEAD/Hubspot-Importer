@@ -325,51 +325,35 @@
                                 
                 $videoList=$videoOutClient->ListForArticle($brafton_id,0,10);
                 $list=$videoList->items;
-                $ogg=false;
-                $mp4=false;
-                $flv=false;
-                $width = false;
-                $height = false;
+
+                if ($player == "atlantis")
+                    $embedCode = sprintf( "<video id='video-%s' class=\"ajs-default-skin atlantis-js\" controls preload=\"auto\" width='512' height='288' poster='%s' >", $brafton_id, $presplash ); 
+                
+                else
+                    $embedCode = sprintf( "<video id='video-%s' class='video-js vjs-default-skin' controls preload='auto' width='512' height='288' poster='%s' data-setup src='%s' >", $brafton_id, $presplash, $path ); 
 
                 foreach($list as $listItem){
-                        $output=$videoOutClient->Get($listItem->id);
-                        //logMsg($output->path);
-                        if($output->type=="htmlmp4" && !$mp4) {$mp4=$output->path; $width=$output->width; $height=$output->height;}
-                        if($output->type=="htmlogg" && !$ogg) {$ogg=$output->path; $width=$output->width; $height=$output->height;}
-                        if($output->type=="flash" && !$flv) {$flv=$output->path; $width=$output->width; $height=$output->height;}
-                }
-
-                $embedCode =  "";
-
+                    $output=$videoOutClient->Get($listItem->id);
+                    //logMsg($output->path);
+                    $type = $output->type;
+                    $path = $output->path; 
+                    $resolution = $output->height; 
+                    $source = generate_source_tag( $path, $resolution );
+                    $embedCode .= $source; 
+                }       
+                $embedCode .= '</video>';
+                //old code
+                //$embedCode = $videoClient->VideoPlayers()->GetWithFallback($brafton_id, 'redbean', 1, 'rcflashplayer', 1);
+                
                 if ($player == "atlantis"){
-                //atlantis
-                        $embedCode=<<<EOT
-                <video id='video-$brafton_id' class="ajs-default-skin atlantis-js" controls preload="auto" width="$width" height='$height'
-                        poster='$presplash'>
-                        <source src="$mp4" type='video/mp4' data-resolution="480p" />
-                        <source src="$ogg" type='video/ogg' data-resolution="480p" />
-                        <source src="$flv" type='video/flash' data-resolution="480p" />
-                </video>
-                <script type="text/javascript">
-                        var atlantisVideo = AtlantisJS.Init({
-                                videos: [{
-                                        id: "video-$brafton_id"
-                                }]
-                        });
-                </script>
-EOT;
-                }else{
-                //default to videojs, even if none is selected for scripts.
-                $embedCode=<<<EOT
-                <video id='video-$brafton_id' class='video-js vjs-default-skin'
-                        controls preload='auto' width="$width" height='$height'
-                        poster='$presplash'
-                        data-setup='{"example_option":true}'>
-                        <source src="$mp4" type='video/mp4' />
-                        <source src="$ogg" type='video/ogg' />
-                        <source src="$flv" type='video/flash' />
-                </video>
-EOT;
+                    $script = '<script type="text/javascript">';
+                    $script .=  'var atlantisVideo = AtlantisJS.Init({';
+                    $script .=  'videos: [{';
+                    $script .='id: "video-' . $brafton_id . '"';
+                    $script .= '}]';
+                    $script .= '});';
+                    $script .=  '</script>';
+                    $embedCode .= $script; 
                 }
 
                 $strPost = $embedCode . $post_content;
@@ -630,6 +614,13 @@ EOT;
         }
     }
 
+    /* video updates*/
+    function generate_source_tag($src, $resolution)
+    {
+        $tag = ''; 
+        $ext = pathinfo($src, PATHINFO_EXTENSION); 
 
+        return sprintf('<source src="%s" type="video/%s" data-resolution="%s" />', $src, $ext, $resolution );
+    }
 
 ?>
