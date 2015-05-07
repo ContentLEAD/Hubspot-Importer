@@ -476,7 +476,7 @@
     }
 
 	function list_topics(){
-        $url = 'https://api.hubapi.com/content/api/v3/topics?hapikey=' . hub_apiKey . '&casing=snake_case';
+        $url = 'https://api.hubapi.com/blogs/v3/topics?hapikey=' . hub_apiKey . '&casing=snake_case';
         
         $topicsInfo = execute_get_request($url);
 
@@ -506,7 +506,7 @@
     function create_topic($topic,$existing_topics){
         //global $existing_topics;
 
-        $url = 'https://api.hubapi.com/content/api/v3/topics?hapikey=' . hub_apiKey . '&casing=snake_case';
+        $url = 'https://api.hubapi.com/blogs/v3/topics?hapikey=' . hub_apiKey . '&casing=snake_case';
 
         $params = array(
             'name' => $topic,
