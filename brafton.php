@@ -464,7 +464,7 @@
     }
 
     function list_authors(){
-        $url = 'https://api.hubapi.com/content/api/v2/blog-authors?hapikey=' . hub_apiKey;
+        $url = 'https://api.hubapi.com/blogs/v3/blog-authors?hapikey=' . hub_apiKey . '&casing=snake_case';
         
         $authorsInfo = execute_get_request($url);
 
