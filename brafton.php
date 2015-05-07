@@ -59,6 +59,7 @@
             'content_group_id'=>blog_id,
             'created__gte'=>$post_time,
             'limit'=>30,
+            'order_by'=>'-created'
         );
 
         $titles = list_post_titles($params);
